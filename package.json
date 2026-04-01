@@ -1,0 +1,27 @@
+{
+  "name": "estate-portal-crawler",
+  "version": "1.0.0",
+  "description": "A personal project to help browse offers from real estate website",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leon-adarcewicz/estate-portal-crawler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/leon-adarcewicz/estate-portal-crawler/issues"
+  },
+  "homepage": "https://github.com/leon-adarcewicz/estate-portal-crawler#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.0",
+    "@types/node": "^25.5.0",
+    "eslint": "^10.1.0",
+    "prettier": "^3.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
+}
