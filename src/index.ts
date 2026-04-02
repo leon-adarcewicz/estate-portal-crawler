@@ -5,11 +5,24 @@ import * as csv from "fast-csv";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const csvStream = csv.format({ headers: true });
-const writeStream = fs.createWriteStream(path.resolve(__dirname, "../", "crawler-results.csv"));
+export type Card = {
+  totalPrice: string;
+  sqMPrice: string;
+  address: string;
+  rooms: string;
+  area: string;
+  link: string;
+};
 
-csvStream.pipe(writeStream).on("finish", () => console.log("Done writing CSV"));
+export function createReport(cards: Card[]) {
+  const csvStream = csv.format({ headers: true, writeBOM: true });
+  const writeStream = fs.createWriteStream(path.resolve(__dirname, "../", "crawler-results.csv"));
 
-csvStream.write({ name: "Test Property", price: 500000, city: "Warsaw" });
-csvStream.write({ name: "Another Property", price: 750000, city: "Krakow" });
-csvStream.end();
+  writeStream.write("\uFEFF");
+  csvStream.pipe(writeStream).on("finish", () => console.log("Done writing CSV"));
+
+  cards.forEach((card) => {
+    csvStream.write(card);
+  });
+  csvStream.end();
+}

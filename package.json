@@ -4,7 +4,8 @@
   "description": "A personal project to help browse offers from real estate website",
   "main": "index.js",
   "scripts": {
-    "start": "tsx src/index.ts"
+    "start": "tsx src/index.ts",
+    "crawl": "npx playwright test --project=chromium --reporter=list"
   },
   "repository": {
     "type": "git",
