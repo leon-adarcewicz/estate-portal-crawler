@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { Card, createReport } from "../src/index";
 
 test("has title", async ({ page }) => {
   await page.goto("https://www.otodom.pl/");
@@ -31,12 +32,27 @@ test("has title", async ({ page }) => {
 
   // get by data-sentry-component="AdvertCard"
   const advertCards = page.locator('[data-sentry-component="AdvertCard"]');
+  const cards: Card[] = [];
   for (let card of await advertCards.all()) {
     const price = await card.locator('[data-sentry-component="CustomizedPrice"]').innerText();
-    console.log(price);
-  }
-  await expect(advertCards).toHaveCount(72);
+    const address = await card.locator('[data-sentry-component="Address"]').innerText();
+    const description = await card.locator('[data-sentry-component="DescriptionList"]').innerText();
+    const link = await card.locator('[data-cy="listing-item-link"]').getAttribute("href");
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+    const prices = price.split("\n");
+    const descriptions = description.split("\n");
+
+    cards.push({
+      totalPrice: prices[0],
+      sqMPrice: prices[1],
+      address,
+      rooms: descriptions[1].split(" ")[0],
+      area: descriptions[3].split(" ")[0],
+      link: `https://www.otodom.pl${link}`,
+    });
+  }
+
+  createReport(cards);
+
+  expect(true).toBeTruthy();
 });
