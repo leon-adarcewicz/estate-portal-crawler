@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { Card, createReport } from "../src/index";
+import { Card, createReport, returnNotNumbers, returnNumbers } from "../src/index";
 
 test("has title", async ({ page }) => {
   await page.goto("https://www.otodom.pl/");
@@ -43,11 +43,13 @@ test("has title", async ({ page }) => {
     const descriptions = description.split("\n");
 
     cards.push({
-      totalPrice: prices[0],
-      sqMPrice: prices[1],
+      totalPrice: returnNumbers(prices[0]),
+      totalPriceUnit: returnNotNumbers(prices[0]).trim(),
+      sqMPrice: returnNumbers(prices[1]),
+      unitPrice: returnNotNumbers(prices[1]).trim(),
       address,
       rooms: descriptions[1].split(" ")[0],
-      area: descriptions[3].split(" ")[0],
+      area: Math.round(Number(descriptions[3].split(" ")[0])),
       link: `https://www.otodom.pl${link}`,
     });
   }
