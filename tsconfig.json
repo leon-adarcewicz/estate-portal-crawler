@@ -7,8 +7,9 @@
     "outDir": "./dist",
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "preserve",
     "target": "esnext",
+    "baseUrl": "./src",
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
