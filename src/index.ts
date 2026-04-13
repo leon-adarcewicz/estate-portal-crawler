@@ -1,9 +1,13 @@
 import crawlOtoDom from "crawler";
-import { createReport } from "csv_svc";
+import { createReport, readReport } from "csv_svc";
+import logger from "logger";
+import { convertCardsToCSVRows } from "utils";
 
 async function main() {
+  const oldCards = await readReport();
   const cards = await crawlOtoDom();
-  createReport(cards);
+  const new_rows = convertCardsToCSVRows(cards, oldCards);
+  await createReport(new_rows);
 }
 
 await main();

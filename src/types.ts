@@ -10,4 +10,16 @@ export type Row = {
   viewed: boolean;
 };
 
+export type CSVRow = {
+  "Cena dom": number;
+  "cena w": string;
+  "Cena za metr": number;
+  "jedn.": string;
+  Adres: string;
+  Pokoje: number;
+  Powierzchnia: number;
+  Link: string;
+  Nowe: string;
+};
+
 export type Card = Omit<Row, "viewed">;
