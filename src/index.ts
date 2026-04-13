@@ -1,6 +1,5 @@
 import crawlOtoDom from "crawler";
 import { createReport, readReport } from "csv_svc";
-import logger from "logger";
 import { convertCardsToCSVRows } from "utils";
 
 async function main() {
