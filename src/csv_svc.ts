@@ -46,6 +46,13 @@ export function readReport(): Promise<Card[]> {
   logger.info("Reading CSV");
   return new Promise((resolve, reject) => {
     const cards: Card[] = [];
+
+    if (!fs.existsSync(path.resolve(__dirname, "../", "crawler-results.csv"))) {
+      logger.info("No CSV file found, returning empty array");
+      resolve([]);
+      return;
+    }
+
     fs.createReadStream(path.resolve(__dirname, "../", "crawler-results.csv"))
       .pipe(csv.parse<CSVRow, Card>({ headers: true }))
       .transform((row: CSVRow) => ({
