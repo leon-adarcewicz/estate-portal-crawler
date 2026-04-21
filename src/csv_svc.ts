@@ -22,7 +22,7 @@ export function createReport(cards: Row[]): Promise<void> {
         Powierzchnia: card.area,
         test: "test",
         Link: card.link,
-        Nowe: card.viewed ? "" : "Nie",
+        Nowe: card.viewed ? "" : "Tak",
       }));
 
     const writeStream = fs.createWriteStream(path.resolve(__dirname, "../", "crawler-results.csv"));

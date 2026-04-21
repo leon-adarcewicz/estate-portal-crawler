@@ -2,14 +2,15 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./tests",
     "rootDir": "./src",
     "outDir": "./dist",
+    "baseUrl": "./src",
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "preserve",
+    "moduleResolution": "bundler",
     "target": "esnext",
-    "baseUrl": "./src",
+    "esModuleInterop": true,
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -31,15 +32,24 @@
     // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+    "ignoreDeprecations": "6.0",
+  },
+  "ts-node": {
+    "esm": true,
+    "compilerOptions": {
+      "module": "nodenext",
+      "moduleResolution": "nodenext"
+    }
   },
   "exclude": [
     "dist",
     "node_modules",
+    "jest.config.ts",
     "playwright.config.ts",
     "**/*.test.ts",
     "**/*.spec.ts",
