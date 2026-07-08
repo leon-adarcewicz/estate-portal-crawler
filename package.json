@@ -22,7 +22,7 @@
   "homepage": "https://github.com/leon-adarcewicz/estate-portal-crawler#readme",
   "devDependencies": {
     "@jest/globals": "^30.3.0",
-    "@playwright/test": "^1.59.0",
+    "@playwright/test": "^1.61.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.5.0",
     "eslint": "^10.1.0",
